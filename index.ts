@@ -1,30 +1,21 @@
-import express, { Express, NextFunction, Request, Response } from "express";
-import {
-  DynamoDBClient,
-  ListBackupsCommand,
-  ListTablesCommand,
-} from "@aws-sdk/client-dynamodb";
+import express, { Express } from "express";
+import * as bodyParser from "body-parser";
+import router from "./src/routers/router";
+import logger from "./src/middleware/logRequest";
+import errorLogger from "./src/middleware/errorHandler";
 
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const client = new DynamoDBClient({ region: "eu-west-1" });
+const cors = require("cors");
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
-app.use("/test", async (req: Request, res: Response, next: NextFunction) => {
-  const command = new ListTablesCommand({});
-  try {
-    const results = await client.send(command);
-    console.log(results);
-    res.send(results);
-  } catch (err) {
-    console.error(err);
-    res.send(err);
-  }
-});
+app.use(cors());
+app.use(bodyParser.json());
+
+app.use(logger);
+
+app.use(router);
+app.use(errorLogger);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
