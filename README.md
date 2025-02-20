@@ -1,5 +1,25 @@
 # seneca
 
+node version: >20.11.1
+
+Application:
+
+start: npm run start-dev
+port: 8080
+postman collection used is in repo: Seneca.postman_collection.json
+
+I wasn't sure in the requirements where it said: Your service should have some level of tests meant Unit tests or not
+
+...So I have added a couple of unit tests which you can start with: npm test
+
+Database
+
+AWS - DynamoDB
+Details:
+table name: session
+pk: user_id (S)
+sk: session_id (S)
+
 example uuids:
 
 course ids:

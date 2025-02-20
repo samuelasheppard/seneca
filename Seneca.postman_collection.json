@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "e138e8a8-fcdb-420e-98c4-41c6d6b1de0d",
+		"name": "Seneca",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33618605"
+	},
+	"item": [
+		{
+			"name": "addUserCourseSession",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "userId",
+						"value": "{{userId}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sessionId\": \"{{sessionId}}\",\r\n    \"totalModulesStudied\": 50,\r\n    \"averageScore\": 95,\r\n    \"timeStudied\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/courses/{{courseId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"courses",
+						"{{courseId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCourseStats",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "userId",
+						"value": "{{userId}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/courses/{{courseId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"courses",
+						"{{courseId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSessionStats",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "userId",
+						"value": "{{userId}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/courses/{{courseId}}/sessions/{{sessionId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"courses",
+						"{{courseId}}",
+						"sessions",
+						"{{sessionId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "userId",
+			"value": "0228a4fd-66e1-49f1-b06d-936ed0541b17",
+			"type": "string"
+		},
+		{
+			"key": "sessionId",
+			"value": "bf71ca46-ec86-4e11-8785-c769da1409fc",
+			"type": "string"
+		},
+		{
+			"key": "courseId",
+			"value": "865e3112-1014-4094-bd2b-7bb638388d05",
+			"type": "string"
+		}
+	]
+}
