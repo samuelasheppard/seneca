@@ -30,12 +30,24 @@ const dbGetSessionStats = async (
 
     const command = new QueryCommand(params);
     const dbResponse = await docClient.send(command);
-    console.log(dbResponse);
+
+    if (dbResponse.Items?.length === 0) {
+      throw Error("404");
+    }
+
     return dbResponse.Items as Array<DBStatisticsResponse>;
   } catch (e: any) {
+    if (e.message === "404") {
+      throw new CustomError(
+        404,
+        `No records found for sessionId: ${sessionId}`,
+        e,
+        "service::dbGetSessionStats"
+      );
+    }
     throw new CustomError(
-      404,
-      "Unable to find user or session entry",
+      500,
+      "Error fetching data",
       e,
       "service::dbGetSessionStats"
     );

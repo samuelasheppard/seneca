@@ -24,6 +24,7 @@ const dbAddCourseSession = async (
       },
       TableName: "session",
       ReturnValues: "ALL_OLD",
+      ConditionExpression: "attribute_not_exists(session_id)",
     };
     const command = new PutItemCommand(params);
 
@@ -31,7 +32,14 @@ const dbAddCourseSession = async (
 
     return sessionId;
   } catch (e: any) {
-    console.log(e);
+    if (e.name === "ConditionalCheckFailedException") {
+      throw new CustomError(
+        403,
+        "Session already exists",
+        e,
+        "service::dbAddCourseSession"
+      );
+    }
     throw new CustomError(
       503,
       "Unable to add session",

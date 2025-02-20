@@ -16,15 +16,3 @@ session ids:
 bf71ca46-ec86-4e11-8785-c769da1409fc
 18ca4487-d011-4db6-a760-d87146aa0c45
 3f8dd9a5-090b-4277-a49d-7da6b44dc43b
-
-todo:
-
-don't overwrite entries in db
-
-improve dbAddCourseSession call
-
-add handling for no data found scenarios
-
-add some tests
-
-write README file
