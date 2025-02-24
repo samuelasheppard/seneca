@@ -1,4 +1,4 @@
-import express, { Express } from "express";
+import express, { Express, Response, Request, NextFunction } from "express";
 import * as bodyParser from "body-parser";
 import router from "./src/routers/router";
 import logger from "./src/middleware/logRequest";
@@ -11,7 +11,10 @@ const port = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(bodyParser.json());
-
+//health check
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
+  res.status(200).send({ status: "ok" });
+});
 app.use(logger);
 
 app.use(router);

@@ -4,9 +4,10 @@
   "description": "backend interview task",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node index.ts",
+    "start": "node build/index.js",
     "start-dev": "nodemon index.ts",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
